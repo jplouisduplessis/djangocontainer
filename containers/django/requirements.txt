@@ -1,0 +1,5 @@
+setuptools
+Django
+djangorestframework
+django-cors-middleware
+mysql-connector-python

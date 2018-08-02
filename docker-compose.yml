@@ -1,0 +1,30 @@
+version: '3'
+networks:
+  new:
+services:
+  db:
+    image: mysql:5.7
+    container_name: "mysql"
+    volumes:
+      - ./conf/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: password
+    networks: 
+      new:
+        aliases:
+          - database
+  django:
+    image: django
+    volumes:
+        - ./application-content/django/:/content
+        - ./applications/django:/app
+    environment:
+      MIGRATE: 0 # Can toggle whether to run with migrations or not (if changes need to be updated)
+      DJANGO_PORT: 8080
+      CONTENTROOT: /content
+      SHELL: "/bin/bash"
+    networks: 
+      - new

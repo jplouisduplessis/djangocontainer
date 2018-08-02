@@ -1,0 +1,10 @@
+version: '3'
+services:
+  db:
+    ports:
+      - 4000:3306
+  django:
+    ports:
+      - 3000:8080
+    environment:
+      APPNAME: "restserver"
